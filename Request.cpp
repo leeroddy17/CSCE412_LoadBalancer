@@ -1,13 +1,17 @@
-//
+// Request.cpp
 // Created by leero on 9/29/2022.
 //
+
+#define REQUEST_CPP
 #include <string>
 
-#define REQUEST.CPP
-
+/**
+ * Struct to represent a request. Contains the Source and Destination
+ * IP4 Address as well as the expected time to complete the request.
+ */
 struct Request
 {
-    string source;
-    string destination;
+    std::string ip_in;
+    std::string ip_out;
     int time;
 };

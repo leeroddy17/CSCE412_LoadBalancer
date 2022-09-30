@@ -1,4 +1,4 @@
-//
+// Server.h
 // Created by leero on 9/28/2022.
 //
 
@@ -17,7 +17,10 @@ private:
 public:
     Server();
     Server(char c);
-    void addRequest(Request req, int currTime);
+    void addRequest(Request req, int current_time);
+    bool isRequestDone(int current_time);
+    Request getRequest();
+    char getName();
 };
 
 

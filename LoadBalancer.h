@@ -1,4 +1,4 @@
-//
+// LoadBalancer.h
 // Created by leero on 9/29/2022.
 //
 
@@ -14,9 +14,15 @@
 class LoadBalancer {
 public:
     LoadBalancer();
-
+    int getTime();
+    void incrementTime();
+    void addRequestToQueue(Request req);
+    Request getRequest();
+    bool isRequestQueueEmpty();
+    int getQueueSize();
 private:
     int systemTime;
+    std::queue<Request> requestQueue;
 };
 
 
