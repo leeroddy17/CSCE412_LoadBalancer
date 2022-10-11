@@ -58,9 +58,6 @@ int main(int argc, char** argv) {
     }
 
     cout << "Queue Size: " <<  lb.getQueueSize() << endl;
-//    Request sample = lb.getRequest();
-//    cout << "Sample: " << sample.source << " " <<  sample.destination << "  " << sample.time << endl;
-//    cout << "Queue Size: " <<  lb.getQueueSize() << endl;
 
     // Create an array of servers
     cout << "Creating " << num_servers << " servers..." << endl;

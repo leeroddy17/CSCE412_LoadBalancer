@@ -15,6 +15,7 @@ LoadBalancer::LoadBalancer() {
 
 /**
  * Gets the current time of the load balancer
+ *
  * @return int, time
  */
 int LoadBalancer::getTime() {
@@ -30,7 +31,8 @@ void LoadBalancer::incrementTime() {
 
 /**
  * Adds a request to the queue
- * @param req
+ *
+ * @param Request type to be added to queue
  */
 void LoadBalancer::addRequestToQueue(Request req) {
     requestQueue.push(req);
@@ -39,7 +41,8 @@ void LoadBalancer::addRequestToQueue(Request req) {
 
 /**
  * Fetches the request from the queue, removes request
- * @return Request
+ *
+ * @return Request that was removed from queue.
  */
 Request LoadBalancer::getRequest() {
     incrementTime();
@@ -55,6 +58,7 @@ Request LoadBalancer::getRequest() {
 
 /**
  * Returns whether requestQueue is empty
+ *
  * @return bool, true if empty
  */
 bool LoadBalancer::isRequestQueueEmpty() {
@@ -63,6 +67,7 @@ bool LoadBalancer::isRequestQueueEmpty() {
 
 /**
  * Returns the size of the queue
+ *
  * @return int, requestQueue size
  */
 int LoadBalancer::getQueueSize() {

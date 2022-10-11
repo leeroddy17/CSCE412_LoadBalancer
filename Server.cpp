@@ -5,7 +5,7 @@
 #include "Server.h"
 
 /**
- * Default constructor, initialized name to blank
+ * Default constructor, initialized name to empty char
  */
 Server::Server() {
     requestStartTime = 0;
@@ -22,8 +22,8 @@ Server::Server(char c) {
 
 /**
  * Adds a request for the server to process
- * @param req
- * @param currTime
+ * @param req, Request type to be added
+ * @param currTime, Current time which request was added
  */
 void Server::addRequest(Request req, int currTime) {
     r = req;
@@ -32,7 +32,7 @@ void Server::addRequest(Request req, int currTime) {
 
 /**
  * Returns whether a request has finished
- * @param current_time
+ * @param current_time, Current time
  * @return bool, true if request finished
  */
 bool Server::isRequestDone(int current_time) {
@@ -41,7 +41,7 @@ bool Server::isRequestDone(int current_time) {
 
 /**
  * Gets the request from the server
- * @return Request
+ * @return Request, current request being processed by server
  */
 Request Server::getRequest() {
     return r;
