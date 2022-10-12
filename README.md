@@ -35,4 +35,4 @@ By default, this program will randomly add to the request queue 10% of the time.
 This new request is not printed to the console, but it can be printed by uncommenting lines 91 and 92 in main.cpp. 
 # Documentation
 Documentation for this program has been created using Doxygen, and can 
-be found here.
+be found [here](https://people.tamu.edu/~leeroddy17/).
