@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <string>
 #include <sstream>
+#include <limits>
 
 #include "LoadBalancer.h"
 #include "Server.h"
@@ -32,7 +33,7 @@ string generateIP() {
  * @return int, random time
  */
 int generateTime() {
-    return rand() % 999; //creates a randomly generated time between 0 < x < 1000
+    return rand() % 497 + 3; //creates a randomly generated time between 0 < x < 1000
 }
 
 
@@ -52,16 +53,28 @@ int main(int argc, char** argv) {
     // Create LoadBalancer and populate
     int lb_size = num_servers * 2;
     LoadBalancer lb = LoadBalancer();
+
+    double min_task_time = numeric_limits<double>::infinity();;
+    double max_task_time = 0.0;
+
     for (int i = 0; i < lb_size; i++) {
-        Request req = {generateIP(), generateIP(), generateTime()};
+        int random_time = generateTime();
+        Request req = {generateIP(), generateIP(), random_time};
         lb.addRequestToQueue(req);
+        if (random_time > max_task_time) {
+            max_task_time = random_time;
+        }
+        if (random_time < min_task_time) {
+            min_task_time = random_time;
+        }
     }
 
-    cout << "Queue Size: " <<  lb.getQueueSize() << endl;
+    cout << "Starting Queue Size: " <<  lb.getQueueSize() << endl;
 
     // Create an array of servers
     cout << "Creating " << num_servers << " servers..." << endl;
     Server server_arr[num_servers];
+
     for (int i = 0; i < num_servers; i++) {
         server_arr[i] = Server((char)(i + 65));
         server_arr[i].addRequest(lb.getRequest(), lb.getTime());
@@ -84,17 +97,26 @@ int main(int argc, char** argv) {
             server_arr[current_time % num_servers].addRequest(lb.getRequest(), current_time);
         }
 
-        // 10% chance to randomly add new request to the queue
-        if (rand() % 10 == 0) {
-            Request to_add = {generateIP(), generateIP(), generateTime()};
+        // 5% chance to randomly add new request to the queue
+        if (rand() % 20 == 0) {
+            int random_time = generateTime();
+            Request to_add = {generateIP(), generateIP(), random_time};
             lb.addRequestToQueue(to_add);
+
+            if (random_time > max_task_time) {
+                max_task_time = random_time;
+            }
+            if (random_time < min_task_time) {
+                min_task_time = random_time;
+            }
 //            cout << "At time t=" << current_time << " " << server_arr[current_time % num_servers].getName() <<
 //                 " received a new request from " << to_add.ip_in << " to " << to_add.ip_out << endl;
         }
-
         lb.incrementTime();
-
     }
+
+    cout << "Ending Queue Size: " <<  lb.getQueueSize() << endl;
+    cout << "Task times range from " << min_task_time << "-" << max_task_time << " seconds." << endl;
 
     return 0;
 }
