@@ -30,8 +30,9 @@ At time t=9785 F processed request from 69.165.85.139 to 117.45.134.202
 At time t=9853 D processed request from 55.202.69.120 to 177.115.52.242
 At time t=9957 H processed request from 112.160.104.123 to 161.254.146.53
 ```
+By default, this program will initialize the number of requests to twice the size of the number of servers input, so 10 servers will initialize the queue to 20 requests.
 
-By default, this program will randomly add to the request queue 10% of the time.
+By default, this program will randomly add to the request queue 5% of the time.
 This new request is not printed to the console, but it can be printed by uncommenting lines 91 and 92 in main.cpp. 
 # Documentation
 Documentation for this program has been created using Doxygen, and can 
